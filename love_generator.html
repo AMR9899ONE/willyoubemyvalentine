@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💕 Infinite Reasons I Love You</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0a0a;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gradient-bg {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(220, 20, 60, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(139, 0, 0, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(178, 34, 34, 0.2) 0%, transparent 50%),
+                linear-gradient(180deg, #000000 0%, #1a0000 100%);
+            animation: gradientShift 15s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.1) rotate(5deg); }
+        }
+
+        .particle {
+            position: fixed;
+            width: 3px;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: particleFloat linear infinite;
+        }
+
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% {
+                transform: translateY(-100vh) translateX(100px);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            max-width: 700px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            padding: 60px 50px;
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+            animation: shine 8s infinite;
+        }
+
+        @keyframes shine {
+            0% { left: -100%; }
+            50%, 100% { left: 100%; }
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3em;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ff0000, #dc143c, #8b0000);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            animation: glow 3s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.3); }
+        }
+
+        .subtitle {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.2em;
+            margin-bottom: 40px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .counter-section {
+            background: rgba(220, 20, 60, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 40px 0;
+            border: 1px solid rgba(220, 20, 60, 0.3);
+        }
+
+        .counter-label {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1em;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .counter-number {
+            font-size: 3.5em;
+            background: linear-gradient(135deg, #ff0000, #dc143c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .reason-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            margin: 30px 0;
+            border-left: 4px solid #dc143c;
+            min-height: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            animation: slideIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 10px 40px rgba(220, 20, 60, 0.2);
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .reason-text {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.4em;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            font-weight: 300;
+        }
+
+        .japanese-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6em;
+            font-style: italic;
+            background: linear-gradient(135deg, #ff0000, #dc143c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 20px 0;
+            font-weight: 600;
+        }
+
+        .translation {
+            color: rgba(255, 255, 255, 0.5);
+            font-style: italic;
+            font-size: 1em;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #dc143c, #8b0000);
+            color: white;
+            border: none;
+            padding: 25px 60px;
+            font-size: 1.4em;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 40px rgba(220, 20, 60, 0.5);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin: 20px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 50px rgba(220, 20, 60, 0.7);
+        }
+
+        .cta-button:active {
+            transform: scale(0.95);
+        }
+
+        .initial-message {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.3em;
+            margin: 40px 0;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        .heart-decoration {
+            font-size: 3em;
+            margin: 30px 0;
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 40px 30px;
+            }
+            h1 {
+                font-size: 2.2em;
+            }
+            .counter-number {
+                font-size: 2.8em;
+            }
+            .reason-text {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="gradient-bg"></div>
+
+    <script>
+        for(let i = 0; i < 40; i++) {
+            let particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            particle.style.animationDelay = Math.random() * 5 + 's';
+            document.body.appendChild(particle);
+        }
+    </script>
+
+    <div class="container">
+        <h1>💕 Infinite Reasons 💕</h1>
+        <p class="subtitle">Why I Love You</p>
+
+        <div class="counter-section">
+            <div class="counter-label">Reasons Discovered</div>
+            <div class="counter-number" id="counter">0</div>
+        </div>
+
+        <div id="reasonDisplay">
+            <div class="initial-message">
+                <div class="heart-decoration">💝</div>
+                <p>Every click reveals another reason why you mean the world to me.</p>
+                <p style="margin-top: 20px;">Ready to discover how much you're loved?</p>
+            </div>
+        </div>
+
+        <button class="cta-button" onclick="showReason()">
+            <span id="buttonText">Show Me 💕</span>
+        </button>
+    </div>
+
+    <script>
+        const reasons = [
+            {
+                en: "Your compassion for others shines through in everything you do",
+                jp: "優しい心を持っているところ",
+                translation: "Your gentle heart"
+            },
+            {
+                en: "The way you dedicate yourself to becoming a great doctor",
+                jp: "いつも一生懸命頑張っているところ",
+                translation: "How you always try your best"
+            },
+            {
+                en: "Your beautiful smile that lights up every room",
+                jp: "素敵な笑顔",
+                translation: "Your wonderful smile"
+            },
+            {
+                en: "How you never give up, even when things are tough",
+                jp: "諦めない強さ",
+                translation: "Your strength to never give up"
+            },
+            {
+                en: "The gentle way you care for everyone around you",
+                jp: "思いやりがあるところ",
+                translation: "Your compassion"
+            },
+            {
+                en: "Your brilliant mind and how you love to learn",
+                jp: "頭が良くて尊敬できるところ",
+                translation: "Your intelligence that I respect"
+            },
+            {
+                en: "The way you make even difficult days feel manageable",
+                jp: "一緒にいると安心するところ",
+                translation: "How I feel safe with you"
+            },
+            {
+                en: "Your kindness to everyone you meet",
+                jp: "みんなに優しいところ",
+                translation: "How you're kind to everyone"
+            },
+            {
+                en: "How your eyes sparkle when you talk about your dreams",
+                jp: "夢に向かって頑張る姿",
+                translation: "How you work towards your dreams"
+            },
+            {
+                en: "The way you balance strength and gentleness perfectly",
+                jp: "強くて優しいところ",
+                translation: "Being strong and gentle"
+            },
+            {
+                en: "Your adorable love for Totoro and all things Ghibli",
+                jp: "トトロが好きなところ",
+                translation: "How you love Totoro"
+            },
+            {
+                en: "How you appreciate the beauty in small things, like flowers",
+                jp: "花が好きな優しい心",
+                translation: "Your gentle heart that loves flowers"
+            },
+            {
+                en: "Your determination to make a difference in the world",
+                jp: "世界を良くしたいという気持ち",
+                translation: "Your desire to make the world better"
+            },
+            {
+                en: "The way you make me want to be a better person",
+                jp: "私を成長させてくれるところ",
+                translation: "How you help me grow"
+            },
+            {
+                en: "Your infectious laughter that I could listen to forever",
+                jp: "可愛い笑い声",
+                translation: "Your cute laugh"
+            },
+            {
+                en: "How you stay humble despite being so accomplished",
+                jp: "謙虚なところ",
+                translation: "Your humility"
+            },
+            {
+                en: "The way you care about doing things right",
+                jp: "真面目で丁寧なところ",
+                translation: "How you're serious and careful"
+            },
+            {
+                en: "Your ability to find joy even during stressful times",
+                jp: "困難な時でも笑顔を忘れないところ",
+                translation: "Not forgetting to smile even in hard times"
+            },
+            {
+                en: "How you treat everyone with respect and dignity",
+                jp: "みんなを尊重するところ",
+                translation: "How you respect everyone"
+            },
+            {
+                en: "The beautiful person you are, inside and out",
+                jp: "内面も外見も美しいところ",
+                translation: "Being beautiful inside and out"
+            },
+            {
+                en: "Your dedication to helping and healing others",
+                jp: "人を助けたいという情熱",
+                translation: "Your passion to help people"
+            },
+            {
+                en: "The way you light up my entire world",
+                jp: "私の世界を明るくしてくれるところ",
+                translation: "How you brighten my world"
+            },
+            {
+                en: "How you make every day an adventure",
+                jp: "毎日を楽しくしてくれるところ",
+                translation: "How you make every day fun"
+            },
+            {
+                en: "Your courage in pursuing such a challenging career",
+                jp: "勇気を持って夢を追いかけるところ",
+                translation: "Having courage to chase your dreams"
+            },
+            {
+                en: "The way you never lose sight of what matters most",
+                jp: "大切なことを忘れないところ",
+                translation: "Not forgetting what's important"
+            },
+            {
+                en: "How you make me feel loved and cherished",
+                jp: "愛されていると感じさせてくれるところ",
+                translation: "Making me feel loved"
+            },
+            {
+                en: "Your ability to see the good in people",
+                jp: "人の良いところを見つけられるところ",
+                translation: "Finding the good in people"
+            },
+            {
+                en: "The way you work so hard while staying so kind",
+                jp: "頑張り屋さんなのに優しいところ",
+                translation: "Working hard yet staying kind"
+            },
+            {
+                en: "How you inspire me every single day",
+                jp: "毎日インスピレーションをくれるところ",
+                translation: "Giving me inspiration every day"
+            },
+            {
+                en: "Simply everything about you",
+                jp: "全部が大好き",
+                translation: "I love everything about you"
+            }
+        ];
+
+        let count = 0;
+        let usedReasons = new Set();
+
+        function showReason() {
+            if (usedReasons.size >= reasons.length) {
+                usedReasons.clear();
+            }
+
+            let randomIndex;
+            do {
+                randomIndex = Math.floor(Math.random() * reasons.length);
+            } while (usedReasons.has(randomIndex));
+
+            usedReasons.add(randomIndex);
+            const reason = reasons[randomIndex];
+
+            count++;
+            document.getElementById('counter').textContent = count;
+
+            createFloatingHearts();
+
+            const displayArea = document.getElementById('reasonDisplay');
+            displayArea.innerHTML = `
+                <div class="reason-card">
+                    <div class="reason-text">${reason.en}</div>
+                    <div class="japanese-text">${reason.jp}</div>
+                    <div class="translation">(${reason.translation})</div>
+                </div>
+            `;
+
+            if (count === 1) {
+                document.getElementById('buttonText').textContent = 'Another 💕';
+            }
+        }
+
+        function createFloatingHearts() {
+            const hearts = ['❤️', '💕', '💖', '💗', '💝'];
+            for (let i = 0; i < 3; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.style.position = 'fixed';
+                    heart.style.fontSize = '2.5em';
+                    heart.style.zIndex = '1000';
+                    heart.style.pointerEvents = 'none';
+                    heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                    heart.style.left = Math.random() * 80 + 10 + '%';
+                    heart.style.bottom = '0';
+                    heart.style.animation = 'floatUp 4s ease-in';
+                    document.body.appendChild(heart);
+
+                    setTimeout(() => heart.remove(), 4000);
+                }, i * 150);
+            }
+        }
+
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes floatUp {
+                0% {
+                    transform: translateY(0) rotate(0deg);
+                    opacity: 1;
+                }
+                100% {
+                    transform: translateY(-100vh) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
